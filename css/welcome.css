@@ -1,0 +1,48 @@
+/* ===== WELCOME SCREEN ===== */
+#welcome-screen {
+  position: fixed; inset: 0; z-index: 9998;
+  background: linear-gradient(to bottom, #1a3fa8 0%, #2060cc 40%, #1a3fa8 100%);
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0;
+}
+.welcome-top {
+  width: 100%; background: rgba(0,0,0,0.3);
+  padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.welcome-title { color: #fff; font-size: 22px; font-weight: 300; letter-spacing: 1px; }
+.welcome-title span { font-weight: 700; }
+.welcome-body { flex: 1; display: flex; align-items: center; justify-content: center; gap: 40px; flex-direction: column; position: relative; }
+.welcome-user {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  cursor: pointer; padding: 20px 32px; border-radius: 4px;
+  transition: background 0.2s;
+}
+.welcome-user:hover { background: rgba(255,255,255,0.1); }
+.welcome-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, #4d94ff, #0050d0);
+  border: 3px solid rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px;
+}
+.welcome-username { color: #fff; font-size: 14px; font-weight: 700; }
+.welcome-click { color: rgba(255,255,255,0.6); font-size: 11px; }
+.welcome-bottom {
+  width: 100%; background: rgba(0,0,0,0.3);
+  padding: 12px 32px; display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.welcome-btn { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.8); font-size: 11px; cursor: pointer; padding: 4px 8px; border-radius: 2px; }
+.welcome-btn:hover { background: rgba(255,255,255,0.1); }
+.welcome-btn-icon { font-size: 16px; }
+
+/* Easter egg hint popup */
+#welcome-egg-popup {
+  position: absolute; bottom: 80px; right: 40px;
+  background: #fffde7; border: 1px solid #f0c000;
+  border-radius: 4px; padding: 10px 14px; max-width: 260px;
+  font-family: 'Tahoma', sans-serif; font-size: 11px; color: #333;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  animation: eggFloat 3s ease-in-out infinite;
+}

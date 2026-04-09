@@ -1,0 +1,17 @@
+# Claude Code
+.claude/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# If you add npm tooling later
+node_modules/
+dist/
+
+# Logs
+*.log
+
+# Large raw/original assets (uncomment if needed)
+# public/assets/videos/

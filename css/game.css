@@ -1,0 +1,38 @@
+/* ===== DESTRUCTION GAME ===== */
+#game-overlay {
+  position: fixed; inset: 0; bottom: 30px;
+  z-index: 8000; pointer-events: none;
+  overflow: hidden;
+}
+#game-overlay.active { pointer-events: all; cursor: none; }
+
+.splat { position: absolute; border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); animation: splatIn 0.15s ease-out forwards; }
+.splat-blob { position: absolute; border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); }
+.crack { position: absolute; pointer-events: none; transform-origin: top left; }
+
+#game-cursor {
+  position: fixed; pointer-events: none; z-index: 8100;
+  transform: translate(-50%, -50%);
+  font-size: 32px; display: none;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
+  transition: transform 0.05s;
+}
+#game-cursor.chainsaw  { font-size: 36px; }
+#game-cursor.paintball { font-size: 28px; }
+
+#game-hud {
+  position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+  z-index: 8200; background: rgba(0,0,0,0.75); color: #fff;
+  padding: 6px 16px; border-radius: 4px; font-size: 11px;
+  display: none; gap: 16px; align-items: center;
+  border: 1px solid rgba(255,255,255,0.2); white-space: nowrap;
+}
+#game-hud.visible { display: flex; }
+.hud-weapon { font-weight: 700; color: #ffcc00; }
+.hud-ammo   { color: #aaffaa; }
+.hud-btn {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+  color: #fff; padding: 2px 8px; border-radius: 2px; cursor: pointer; font-size: 10px;
+}
+.hud-btn:hover { background: rgba(255,255,255,0.25); }
+.chainsaw-rev { animation: chainsawShake 0.1s infinite; }

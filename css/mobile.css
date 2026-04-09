@@ -1,0 +1,16 @@
+/* ===== MOBILE SPLASH ===== */
+#mobile-splash {
+  display: none; position: fixed; inset: 0; z-index: 99999;
+  background: #000; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px; padding: 32px; text-align: center;
+}
+.mobile-logo { font-size: 48px; }
+.mobile-title { color: #fff; font-size: 20px; font-weight: 700; }
+.mobile-subtitle { color: #aaa; font-size: 13px; line-height: 1.6; }
+.mobile-logo-flag { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; width: 48px; height: 48px; margin: 0 auto; }
+.mobile-logo-flag div { border-radius: 2px; }
+
+@media (max-width: 700px) {
+  #mobile-splash { display: flex; }
+  #boot-screen, #welcome-screen, #desktop, #taskbar { display: none !important; }
+}

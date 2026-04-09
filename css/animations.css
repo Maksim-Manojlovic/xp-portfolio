@@ -1,0 +1,56 @@
+/* ===== ALL @KEYFRAMES ===== */
+
+@keyframes bootSeg {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes eggFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes minimizeAnim {
+  0%   { transform: scale(1) translateY(0);    opacity: 1; }
+  100% { transform: scale(0.1) translateY(60vh); opacity: 0; }
+}
+
+@keyframes unminimizeAnim {
+  0%   { transform: scale(0.1) translateY(60vh); opacity: 0; display: block; }
+  100% { transform: scale(1) translateY(0);    opacity: 1; }
+}
+
+@keyframes splatIn {
+  from { transform: translate(-50%,-50%) scale(0); opacity: 1; }
+  to   { transform: translate(-50%,-50%) scale(1); opacity: 1; }
+}
+
+@keyframes chainsawShake {
+  0%, 100% { transform: translate(-50%,-50%) rotate(-5deg); }
+  50%       { transform: translate(-50%,-50%) rotate(5deg); }
+}
+
+@keyframes bombRing {
+  from { width: 10px; height: 10px; opacity: 1; border-width: 4px; }
+  to   { width: 200px; height: 200px; opacity: 0; border-width: 1px; margin-left: -95px; margin-top: -95px; }
+}
+
+@keyframes bombFlash {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes errorPopIn {
+  from { transform: scale(0.7) translateY(-20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

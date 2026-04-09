@@ -1,0 +1,64 @@
+/* ===== TASKBAR ===== */
+#taskbar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 30px;
+  background: var(--xp-taskbar);
+  border-top: 1px solid #5b84d4;
+  display: flex; align-items: center; gap: 0;
+  z-index: 1000;
+}
+#start-btn {
+  height: 100%; padding: 0 10px 0 8px;
+  background: var(--xp-start-green);
+  border: none; border-radius: 0 10px 10px 0;
+  color: #fff; font-family: 'Tahoma', sans-serif; font-size: 13px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; gap: 5px;
+  box-shadow: inset 1px 0 0 rgba(255,255,255,0.3), 1px 0 3px rgba(0,0,0,0.4);
+  letter-spacing: 0.5px;
+}
+#start-btn:hover { filter: brightness(1.1); }
+#start-btn:active { filter: brightness(0.9); }
+.start-icon { font-size: 18px; }
+#quick-launch {
+  display: flex; align-items: center; height: 100%;
+  border-right: 1px solid rgba(255,255,255,0.15);
+  padding: 0 4px; gap: 2px;
+}
+.ql-btn { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; border-radius: 2px; }
+.ql-btn:hover { background: rgba(255,255,255,0.2); }
+#taskbar-windows {
+  flex: 1; display: flex; align-items: center; gap: 3px; padding: 0 4px; height: 100%;
+  overflow: hidden;
+}
+.taskbar-btn {
+  height: 22px; min-width: 80px; max-width: 150px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+  border: 1px solid rgba(0,0,0,0.3);
+  border-top-color: rgba(255,255,255,0.2);
+  border-radius: 2px; padding: 0 6px;
+  color: #fff; font-family: 'Tahoma', sans-serif; font-size: 11px;
+  cursor: pointer; display: flex; align-items: center; gap: 4px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.taskbar-btn.active {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(255,255,255,0.1));
+  border-color: rgba(0,0,0,0.4); box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+}
+.taskbar-btn:hover { background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(0,0,0,0.05)); }
+
+/* System tray */
+#system-tray {
+  display: flex; align-items: center; gap: 6px; padding: 0 8px;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  height: 100%; color: #fff; font-size: 11px;
+}
+#clock { font-size: 11px; color: #fff; white-space: nowrap; cursor: default; padding: 0 2px; position: relative; }
+#clock-tooltip {
+  display: none;
+  position: absolute; bottom: 36px; right: 0;
+  background: #ffffcc; border: 1px solid #888; color: #000;
+  font-family: 'Tahoma', sans-serif; font-size: 11px;
+  padding: 4px 8px; white-space: nowrap;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  z-index: 2000; pointer-events: none;
+}
+#clock:hover #clock-tooltip { display: block; }

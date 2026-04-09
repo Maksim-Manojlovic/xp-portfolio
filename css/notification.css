@@ -1,0 +1,11 @@
+/* ===== XP NOTIFICATION BUBBLE ===== */
+.xp-notification {
+  position: fixed; bottom: 36px; right: 8px; z-index: 5000;
+  background: #ffffe1; border: 1px solid #888;
+  padding: 8px 12px; max-width: 220px; font-size: 11px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s ease;
+}
+.xp-notification-title { font-weight: 700; margin-bottom: 4px; font-size: 11px; color: #0a246a; }
+.xp-notification-close { position: absolute; top: 4px; right: 6px; cursor: pointer; font-size: 10px; color: #666; }
+.xp-notification-close:hover { color: #000; }

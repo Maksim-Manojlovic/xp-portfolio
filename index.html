@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== PRIMARY META ===== -->
+<title>Maksim Manojlovic — WordPress & React Developer | Belgrade</title>
+<meta name="description" content="Portfolio of Maksim Manojlovic, a WordPress and React developer from Belgrade, Serbia. 5+ years building websites, e-commerce stores, and headless CMS solutions. Open to new opportunities.">
+<meta name="keywords" content="Maksim Manojlovic, WordPress developer, React developer, web developer Belgrade, Elementor, WooCommerce, headless WordPress, Node.js, frontend developer Serbia">
+<meta name="author" content="Maksim Manojlovic">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://optamaze.me">
+
+<!-- ===== OPEN GRAPH (Facebook, LinkedIn previews) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://optamaze.me">
+<meta property="og:title" content="Maksim Manojlovic — WordPress & React Developer">
+<meta property="og:description" content="WordPress and React developer from Belgrade with 5+ years of experience. 12+ projects including e-commerce, healthcare, and headless CMS. Open to new opportunities.">
+<meta property="og:image" content="https://optamaze.me/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Maksim Manojlovic Portfolio">
+<meta property="og:locale" content="en_US">
+
+<!-- ===== TWITTER CARD ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Maksim Manojlovic — WordPress & React Developer">
+<meta name="twitter:description" content="WordPress and React developer from Belgrade with 5+ years experience. 12+ projects. Open to work.">
+<meta name="twitter:image" content="https://optamaze.me/og-preview.png">
+<meta name="twitter:creator" content="@maksim_dev">
+
+<!-- ===== STRUCTURED DATA (Google rich results) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Maksim Manojlovic",
+  "url": "https://optamaze.me",
+  "email": "mr.maksim.manojlovic@gmail.com",
+  "jobTitle": "WordPress & React Developer",
+  "description": "Web developer from Belgrade, Serbia specializing in WordPress, WooCommerce, Elementor, React, and Node.js.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Belgrade",
+    "addressCountry": "RS"
+  },
+  "sameAs": [
+    "https://github.com/Maksim-Manojlovic",
+    "https://www.linkedin.com/in/maksim-manojlovic-10ab28244/"
+  ],
+  "knowsAbout": ["WordPress", "React", "Node.js", "WooCommerce", "Elementor", "PHP", "JavaScript", "Tailwind CSS", "SEO"],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Faculty of Organizational Sciences",
+    "address": { "@type": "PostalAddress", "addressLocality": "Belgrade", "addressCountry": "RS" }
+  }
+}
+</script>
+
+<!-- ===== THEME COLOR (browser chrome on mobile) ===== -->
+<meta name="theme-color" content="#1a54ba">
+<meta name="msapplication-TileColor" content="#1a54ba">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/scrollbars.css">
+<link rel="stylesheet" href="css/boot.css">
+<link rel="stylesheet" href="css/welcome.css">
+<link rel="stylesheet" href="css/desktop.css">
+<link rel="stylesheet" href="css/window.css">
+<link rel="stylesheet" href="css/taskbar.css">
+<link rel="stylesheet" href="css/start-menu.css">
+<link rel="stylesheet" href="css/context-menu.css">
+<link rel="stylesheet" href="css/content.css">
+<link rel="stylesheet" href="css/game.css">
+<link rel="stylesheet" href="css/notification.css">
+<link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+
+<!-- MOBILE SPLASH -->
+<div id="mobile-splash">
+  <div class="mobile-logo-flag">
+    <div class="flag-red"></div><div class="flag-green"></div>
+    <div class="flag-blue"></div><div class="flag-yellow"></div>
+  </div>
+  <div class="mobile-title">Windows XP</div>
+  <div class="mobile-subtitle">
+    This portfolio is designed for desktop.<br>
+    Please open it on a computer for the full experience.<br><br>
+    <span style="color:#4d94ff;">Maksim Manojlovic — Developer & Designer</span>
+  </div>
+  <div style="color:#555;font-size:11px;">mr.maksim.manojlovic@gmail.com</div>
+</div>
+
+<!-- BOOT SCREEN -->
+<div id="boot-screen">
+  <div class="boot-logo">
+    <div class="boot-logo-flag">
+      <div class="flag-red"></div><div class="flag-green"></div>
+      <div class="flag-blue"></div><div class="flag-yellow"></div>
+    </div>
+    <div class="boot-logo-text">Microsoft<sup style="font-size:14px">®</sup> <span>Windows</span> XP</div>
+    <div class="boot-tagline">Professional</div>
+  </div>
+  <div class="boot-bar-wrap">
+    <div class="boot-bar-track">
+      <div class="boot-bar-seg"></div>
+      <div class="boot-bar-seg"></div>
+      <div class="boot-bar-seg"></div>
+      <div class="boot-bar-seg"></div>
+      <div class="boot-bar-seg"></div>
+    </div>
+  </div>
+  <div class="boot-copy">Copyright © 2025 Maksim Manojlovic. All rights reserved.</div>
+</div>
+
+<!-- WELCOME SCREEN -->
+<div id="welcome-screen">
+  <div class="welcome-top">
+    <div class="welcome-title">To begin, click your <span>user name</span></div>
+  </div>
+  <div class="welcome-body">
+    <!-- Easter egg hint popup -->
+    <div id="welcome-egg-popup" style="
+      position:absolute;bottom:80px;right:40px;
+      background:#fffde7;border:1px solid #f0c000;
+      border-radius:4px;padding:10px 14px;max-width:260px;
+      font-family:'Tahoma',sans-serif;font-size:11px;color:#333;
+      box-shadow:2px 2px 6px rgba(0,0,0,0.3);
+      animation:eggFloat 3s ease-in-out infinite;
+    ">
+      <div style="display:flex;align-items:flex-start;gap:8px;">
+        <span style="font-size:22px;flex-shrink:0;">🕵️</span>
+        <div>
+          <div style="font-weight:700;margin-bottom:4px;color:#0a246a;">Psst. Before you log in.</div>
+          <div style="line-height:1.6;">
+            This portfolio has <strong>easter eggs</strong>.<br>
+            One of them is a <em>fully playable game</em>.<br><br>
+            I'm not telling you where it is.<br>
+            <span style="color:#888;">...okay fine. Check the Recycle Bin.</span><br>
+            <span style="color:#aaa;font-size:10px;">(The thing developers always forget to empty.)</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:8px;border-top:1px solid #f0e060;padding-top:6px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:10px;color:#888;">This message will self-destruct.</span>
+        <span onclick="document.getElementById('welcome-egg-popup').style.display='none'"
+          style="cursor:pointer;font-size:10px;color:#0000cc;text-decoration:underline;">Dismiss</span>
+      </div>
+    </div>
+    <style>
+      @keyframes eggFloat {
+        0%,100% { transform: translateY(0px); }
+        50%      { transform: translateY(-5px); }
+      }
+    </style>
+
+    <div class="welcome-user" onclick="startDesktop()">
+      <div class="welcome-avatar">👨‍💻</div>
+      <div class="welcome-username">Maksim Manojlovic</div>
+      <div class="welcome-click">Click to log in</div>
+    </div>
+  </div>
+  <div class="welcome-bottom">
+    <div class="welcome-btn"><span class="welcome-btn-icon">🔒</span> Turn off computer</div>
+    <div style="color:rgba(255,255,255,0.4);font-size:10px;">After you log on, you can add or change accounts.<br>Just go to Control Panel and click User Accounts.</div>
+  </div>
+</div>
+
+<!-- DESKTOP -->
+<div id="desktop" ondblclick="desktopDblClick(event)" onclick="desktopClick(event)">
+  <!-- Icons placed via JS -->
+</div>
+
+<!-- TASKBAR -->
+<div id="taskbar">
+  <button id="start-btn" onclick="toggleStartMenu()">
+    <span class="start-icon">⊞</span> start
+  </button>
+  <div id="quick-launch">
+    <div class="ql-btn" title="Show Desktop" onclick="minimizeAll()">🖥️</div>
+  </div>
+  <div id="taskbar-windows"></div>
+  <div id="system-tray">
+    <span title="Network">🌐</span>
+    <span title="Volume">🔊</span>
+    <span id="clock"><span id="clock-time"></span><div id="clock-tooltip"></div></span>
+  </div>
+</div>
+
+<!-- START MENU -->
+<div id="start-menu">
+  <div class="start-menu-header">
+    <div class="start-menu-avatar">👨‍💻</div>
+    <div class="start-menu-name">Maksim Manojlovic</div>
+  </div>
+  <div class="start-menu-body">
+    <div class="start-menu-left">
+      <div class="start-item" onclick="openWindow('about'); closeStartMenu()">
+        <div class="start-item-icon">👤</div>
+        <div class="start-item-text">
+          <div class="start-item-title">About Me</div>
+          <div class="start-item-sub">System properties</div>
+        </div>
+      </div>
+      <div class="start-item" onclick="openWindow('projects'); closeStartMenu()">
+        <div class="start-item-icon">📁</div>
+        <div class="start-item-text">
+          <div class="start-item-title">My Projects</div>
+          <div class="start-item-sub">12 projects · WordPress, React, Node</div>
+        </div>
+      </div>
+      <div class="start-item" onclick="openWindow('skills'); closeStartMenu()">
+        <div class="start-item-icon">⚙️</div>
+        <div class="start-item-text">
+          <div class="start-item-title">Skills & Tools</div>
+          <div class="start-item-sub">Device Manager</div>
+        </div>
+      </div>
+      <div class="start-item" onclick="openWindow('contact'); closeStartMenu()">
+        <div class="start-item-icon">📧</div>
+        <div class="start-item-text">
+          <div class="start-item-title">Contact</div>
+          <div class="start-item-sub">Send a message</div>
+        </div>
+      </div>
+      <div class="start-sep"></div>
+      <div class="start-item" onclick="openWindow('notes'); closeStartMenu()">
+        <div class="start-item-icon">📝</div>
+        <div class="start-item-text">
+          <div class="start-item-title">Notes & Blog</div>
+          <div class="start-item-sub">Notepad</div>
+        </div>
+      </div>
+      <div class="start-item" onclick="openWindow('recycle'); closeStartMenu()">
+        <div class="start-item-icon">🗑️</div>
+        <div class="start-item-text">
+          <div class="start-item-title">Recycle Bin</div>
+          <div class="start-item-sub">Old stuff</div>
+        </div>
+      </div>
+    </div>
+    <div class="start-menu-right">
+      <div class="start-right-item" onclick="window.open('https://github.com/Maksim-Manojlovic','_blank'); closeStartMenu()">
+        <span class="start-right-icon">🐙</span> GitHub
+      </div>
+      <div class="start-right-item" onclick="window.open('https://www.linkedin.com/in/maksim-manojlovic-10ab28244/','_blank'); closeStartMenu()">
+        <span class="start-right-icon">💼</span> LinkedIn
+      </div>
+      <div class="start-sep"></div>
+      <div class="start-right-item" onclick="openWindow('about'); closeStartMenu()">
+        <span class="start-right-icon">⚙️</span> My Computer
+      </div>
+      <div class="start-right-item" onclick="openWindow('skills'); closeStartMenu()">
+        <span class="start-right-icon">🔧</span> Control Panel
+      </div>
+      <div class="start-sep"></div>
+      <div class="start-right-item" onclick="openWindow('cv-download'); closeStartMenu()" style="font-weight:700;color:#c00;">
+        <span class="start-right-icon">📄</span> Download CV
+      </div>
+      <div class="start-right-item" onclick="openWindow('stats'); closeStartMenu()">
+        <span class="start-right-icon">📊</span> My Stats
+      </div>
+    </div>
+  </div>
+  <div class="start-menu-footer">
+    <div class="start-footer-btn" onclick="openTurnOff()">🔴 Turn Off Computer</div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div id="context-menu">
+  <div class="ctx-item" onclick="sortIcons()">Arrange Icons</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="openWindow('about'); hideContextMenu()">Open About Me</div>
+  <div class="ctx-item" onclick="openWindow('contact'); hideContextMenu()">Send Email</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="openWallpaperPicker()">Change Wallpaper 🖼️</div>
+  <div class="ctx-item disabled">Display Properties</div>
+</div>
+
+<!-- GAME OVERLAY -->
+<div id="game-overlay"></div>
+<div id="game-cursor"></div>
+<div id="game-hud">
+  <span>🎮 DESTRUCTION MODE</span>
+  <span class="hud-weapon" id="hud-weapon">🪚 Chainsaw</span>
+  <span class="hud-ammo" id="hud-ammo"></span>
+  <div class="hud-btn" onclick="switchWeapon()">Switch Weapon [W]</div>
+  <div class="hud-btn" onclick="clearDamage()">Clear [C]</div>
+  <div class="hud-btn" onclick="stopGame()">Exit [Esc]</div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

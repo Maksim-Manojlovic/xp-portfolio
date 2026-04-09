@@ -1,0 +1,20 @@
+/* ===== XP SCROLLBARS ===== */
+::-webkit-scrollbar { width: 16px; height: 16px; }
+::-webkit-scrollbar-track { background: var(--xp-silver-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--xp-silver);
+  border: 1px solid #888;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5);
+}
+::-webkit-scrollbar-button {
+  background: var(--xp-silver-dark);
+  border: 1px solid #888;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+::-webkit-scrollbar-corner { background: var(--xp-silver-dark); }

@@ -1,0 +1,47 @@
+/* ===== XP DESIGN TOKENS ===== */
+:root {
+  --xp-blue-dark: #0a246a;
+  --xp-blue-mid: #3b6bc9;
+  --xp-blue-light: #4d8ef0;
+  --xp-title-active: linear-gradient(to bottom, #4d94ff 0%, #1550d4 3%, #1a57d6 6%, #2062d8 10%, #2369da 20%, #2470db 30%, #2470db 70%, #2165ce 80%, #1c58c4 90%, #1550b8 97%, #0e46b0 100%);
+  --xp-title-inactive: linear-gradient(to bottom, #7a96df 0%, #7b9de0 3%, #7fa2e2 10%, #85a8e4 30%, #85a8e4 70%, #7fa0e0 90%, #7898dc 100%);
+  --xp-silver: #ece9d8;
+  --xp-silver-dark: #d4d0c8;
+  --xp-silver-darker: #b0aca0;
+  --xp-green: #3a6e1f;
+  --xp-taskbar: linear-gradient(to bottom, #1f5fc4 0%, #1a54ba 5%, #2263c6 10%, #2467cb 20%, #2469cc 80%, #1e5ec0 95%, #1854b8 100%);
+  --xp-start-green: linear-gradient(to bottom, #5bb030 0%, #4a9420 50%, #3d7a18 100%);
+  --xp-wallpaper: #2a7a2a;
+  --shadow: 2px 2px 0 #000, inset 1px 1px 0 #fff, inset -1px -1px 0 #888;
+  --btn-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #888, 1px 1px 0 #000;
+
+  /* Spacing scale */
+  --xp-space-1: 4px;
+  --xp-space-2: 8px;
+  --xp-space-3: 12px;
+  --xp-space-4: 16px;
+  --xp-space-6: 24px;
+  --xp-space-8: 32px;
+
+  /* Typography */
+  --xp-font-base: 'Tahoma', Tahoma, sans-serif;
+  --xp-font-size-base: 11px;
+  --xp-font-size-sm: 10px;
+  --xp-font-size-lg: 13px;
+
+  /* Radii */
+  --xp-radius-sm: 2px;
+  --xp-radius-md: 4px;
+  --xp-radius-lg: 6px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+
+body {
+  font-family: var(--xp-font-base);
+  font-size: var(--xp-font-size-base);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: var(--xp-wallpaper);
+}
