@@ -6,7 +6,8 @@ let _ctx = null;
 
 function ctx() {
   if (!_ctx || _ctx.state === 'closed') {
-    _ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const AC = window.AudioContext || /** @type {any} */ (window).webkitAudioContext;
+    _ctx = new AC();
   }
   if (_ctx.state === 'suspended') _ctx.resume();
   return _ctx;
@@ -38,20 +39,25 @@ function playTone({ freq = 440, type = 'sine', start = 0, dur = 0.15, vol = 0.15
 
 // ---- Public sounds ----
 
-// Boot/login jingle — plays when user clicks their name on the welcome screen
+// Boot/login jingle — plays the real XP startup sound, falls back to synthesized
 export function playXPStartup() {
   if (muted()) return;
-  try {
-    const notes = [
-      { freq: 523.25, t: 0.00, dur: 0.6, vol: 0.18 },  // C5
-      { freq: 659.25, t: 0.18, dur: 0.6, vol: 0.20 },  // E5
-      { freq: 783.99, t: 0.36, dur: 0.6, vol: 0.20 },  // G5
-      { freq: 1046.5, t: 0.54, dur: 0.9, vol: 0.22 },  // C6
-      { freq: 880.00, t: 0.80, dur: 0.7, vol: 0.18 },  // A5
-      { freq: 1174.7, t: 1.05, dur: 1.4, vol: 0.25 },  // D6 (sustain)
-    ];
-    notes.forEach(n => playTone({ freq: n.freq, start: n.t, dur: n.dur, vol: n.vol }));
-  } catch(e) {}
+  const audio = new Audio('public/assets/sound/xp-startup.mp3');
+  audio.volume = 0.6;
+  audio.play().catch(() => {
+    // File not found or blocked — fall back to synthesized version
+    try {
+      const notes = [
+        { freq: 523.25, t: 0.00, dur: 0.6, vol: 0.18 },
+        { freq: 659.25, t: 0.18, dur: 0.6, vol: 0.20 },
+        { freq: 783.99, t: 0.36, dur: 0.6, vol: 0.20 },
+        { freq: 1046.5, t: 0.54, dur: 0.9, vol: 0.22 },
+        { freq: 880.00, t: 0.80, dur: 0.7, vol: 0.18 },
+        { freq: 1174.7, t: 1.05, dur: 1.4, vol: 0.25 },
+      ];
+      notes.forEach(n => playTone({ freq: n.freq, start: n.t, dur: n.dur, vol: n.vol }));
+    } catch(e) {}
+  });
 }
 
 // Window open — short upward blip (two quick tones)
