@@ -39,24 +39,30 @@ function playTone({ freq = 440, type = 'sine', start = 0, dur = 0.15, vol = 0.15
 
 // ---- Public sounds ----
 
-// Boot/login jingle — plays the real XP startup sound, falls back to synthesized
+// Boot/login jingle — returns a Promise that resolves when sound ends.
+// Uses real XP startup MP3, falls back to synthesized (~2.5s) if unavailable.
 export function playXPStartup() {
-  if (muted()) return;
-  const audio = new Audio('public/assets/sound/xp-startup.mp3');
-  audio.volume = 0.6;
-  audio.play().catch(() => {
-    // File not found or blocked — fall back to synthesized version
-    try {
-      const notes = [
-        { freq: 523.25, t: 0.00, dur: 0.6, vol: 0.18 },
-        { freq: 659.25, t: 0.18, dur: 0.6, vol: 0.20 },
-        { freq: 783.99, t: 0.36, dur: 0.6, vol: 0.20 },
-        { freq: 1046.5, t: 0.54, dur: 0.9, vol: 0.22 },
-        { freq: 880.00, t: 0.80, dur: 0.7, vol: 0.18 },
-        { freq: 1174.7, t: 1.05, dur: 1.4, vol: 0.25 },
-      ];
-      notes.forEach(n => playTone({ freq: n.freq, start: n.t, dur: n.dur, vol: n.vol }));
-    } catch(e) {}
+  return new Promise(resolve => {
+    if (muted()) { resolve(); return; }
+
+    const audio = new Audio('public/assets/sound/xp-startup.mp3');
+    audio.volume = 0.6;
+    audio.addEventListener('ended', resolve, { once: true });
+    audio.play().catch(() => {
+      // File not found or blocked — synthesized fallback (~2.5s)
+      try {
+        const notes = [
+          { freq: 523.25, t: 0.00, dur: 0.6, vol: 0.18 },
+          { freq: 659.25, t: 0.18, dur: 0.6, vol: 0.20 },
+          { freq: 783.99, t: 0.36, dur: 0.6, vol: 0.20 },
+          { freq: 1046.5, t: 0.54, dur: 0.9, vol: 0.22 },
+          { freq: 880.00, t: 0.80, dur: 0.7, vol: 0.18 },
+          { freq: 1174.7, t: 1.05, dur: 1.4, vol: 0.25 },
+        ];
+        notes.forEach(n => playTone({ freq: n.freq, start: n.t, dur: n.dur, vol: n.vol }));
+      } catch(e) {}
+      setTimeout(resolve, 2500);
+    });
   });
 }
 

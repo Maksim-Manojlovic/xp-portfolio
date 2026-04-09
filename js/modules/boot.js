@@ -16,11 +16,31 @@ export function startBootSequence(onDesktopReady) {
   }, 3200);
 
   // Expose login handler globally
-  window.startDesktop = function() {
-    const welcome = document.getElementById('welcome-screen');
+  window.startDesktop = async function() {
+    const welcome    = document.getElementById('welcome-screen');
+    const welcomeTop = welcome.querySelector('.welcome-title');
+    const welcomeBody = welcome.querySelector('.welcome-body');
+
+    // Swap body content to "logging in" state
+    welcomeBody.innerHTML = `
+      <div class="welcome-logging-in">
+        <div class="welcome-avatar" style="margin-bottom:12px;">👨‍💻</div>
+        <div class="welcome-username">Maksim Manojlovic</div>
+        <div class="welcome-loading-label">Loading your personal settings...</div>
+        <div class="welcome-loading-bar">
+          <div class="welcome-loading-seg"></div>
+          <div class="welcome-loading-seg"></div>
+          <div class="welcome-loading-seg"></div>
+        </div>
+      </div>`;
+    if (welcomeTop) welcomeTop.textContent = 'Please wait...';
+
+    // Wait for the startup sound to finish
+    await playXPStartup();
+
+    // Fade out welcome → show desktop
     welcome.style.transition = 'opacity 0.6s';
     welcome.style.opacity = '0';
-    playXPStartup();
     setTimeout(() => {
       welcome.style.display = 'none';
       const desktop = document.getElementById('desktop');
