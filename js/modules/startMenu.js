@@ -1,8 +1,11 @@
 // ===== START MENU =====
+import { playStartMenu } from './audio.js';
 
 export function toggleStartMenu() {
   const menu = document.getElementById('start-menu');
-  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+  const opening = menu.style.display !== 'flex';
+  menu.style.display = opening ? 'flex' : 'none';
+  if (opening) playStartMenu();
 }
 
 export function closeStartMenu() {

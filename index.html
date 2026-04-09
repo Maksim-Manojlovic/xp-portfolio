@@ -184,7 +184,7 @@
   <div id="taskbar-windows"></div>
   <div id="system-tray">
     <span title="Network">🌐</span>
-    <span title="Volume">🔊</span>
+    <span id="tray-volume" title="Volume — click to mute" style="cursor:pointer;" onclick="const m=toggleMute();this.textContent=m?'🔇':'🔊';this.title=m?'Muted — click to unmute':'Volume — click to mute';">🔊</span>
     <span id="clock"><span id="clock-time"></span><div id="clock-tooltip"></div></span>
   </div>
 </div>

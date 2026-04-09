@@ -1,6 +1,7 @@
 // ===== WINDOW MANAGER =====
 import { state } from '../state.js';
 import { addTaskbarBtn } from './taskbar.js';
+import { playWindowOpen, playWindowClose, playMinimize, playRestore } from './audio.js';
 
 // ---- Build menu HTML ----
 // Imported lazily to avoid circular deps — menu.js imports windowManager too
@@ -106,6 +107,7 @@ export function openWindow(id, opts) {
   state.windows[id] = { el: win, minimized: false, maximized: false, prevRect: null };
   focusWindow(id);
   addTaskbarBtn(id, def.icon, opts?.title || def.title, minimizeWindow, unminimizeWindow, focusWindow);
+  playWindowOpen();
 }
 
 export function focusWindow(id) {
@@ -136,6 +138,7 @@ export function minimizeWindow(id) {
     win.style.transformOrigin = '50% 100%';
   }
 
+  playMinimize();
   win.classList.add('minimizing');
   win.addEventListener('animationend', () => {
     win.classList.remove('minimizing');
@@ -164,6 +167,7 @@ export function unminimizeWindow(id) {
     win.style.transformOrigin = '50% 100%';
   }
 
+  playRestore();
   win.classList.add('unminimizing');
   win.addEventListener('animationend', () => {
     win.classList.remove('unminimizing');
@@ -195,7 +199,7 @@ export function maximizeWindow(id) {
 
 export function closeWindow(id) {
   const win = document.getElementById(`window-${id}`);
-  if (win) win.remove();
+  if (win) { playWindowClose(); win.remove(); }
   delete state.windows[id];
   // Remove from defs if it was dynamic (e.g. category/project windows)
   if (id.startsWith('cat-') || id.startsWith('proj-') || ['game-launcher','wallpaper-picker','turnoff-win','about-dialog','help-win','cheats-win','source-win','minesweeper','stats','cv-download'].includes(id)) {

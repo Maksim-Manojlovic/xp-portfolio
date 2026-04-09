@@ -31,6 +31,7 @@ import { registerCVDownload, buildCVDownload, downloadFile } from './windows/cvD
 import { registerStats }       from './windows/stats.js';
 
 // Games
+import { playRecycle, toggleMute } from './modules/audio.js';
 import { startGame, stopGame, switchWeapon, clearDamage, openGameLauncher } from './games/destructionGame.js';
 import { openMinesweeper }     from './games/minesweeper.js';
 import { showXPError, scheduleErrorPopups } from './games/xpErrors.js';
@@ -113,6 +114,10 @@ window.switchTab         = switchTab;
 // Contact
 window.sendContactForm  = sendContactForm;
 window.resetContactForm = resetContactForm;
+
+// Audio
+window.playRecycle = playRecycle;
+window.toggleMute  = toggleMute;
 
 // CV
 window.downloadFile = downloadFile;

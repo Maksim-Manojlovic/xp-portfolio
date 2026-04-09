@@ -44,7 +44,7 @@ function buildRecycle(body) {
     <div style="display:flex;flex-direction:column;flex:1;height:100%;">
       <div style="padding:8px 12px;background:#fff8dc;border-bottom:1px solid #d4d0c8;font-size:11px;color:#666;flex-shrink:0;">
         🗑️ These items are permanently deleted from Maksim's hard drive.
-        <span style="color:#0000cc;cursor:pointer;" onclick="alert('Nice try! 😄')">Empty Recycle Bin</span>
+        <span style="color:#0000cc;cursor:pointer;" onclick="playRecycle();alert('Nice try! 😄')">Empty Recycle Bin</span>
       </div>
       <div class="recycle-content">
         <div id="ms-restore-row"
