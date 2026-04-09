@@ -61,7 +61,7 @@ export function playXPStartup() {
         ];
         notes.forEach(n => playTone({ freq: n.freq, start: n.t, dur: n.dur, vol: n.vol }));
       } catch(e) {}
-      setTimeout(resolve, 2500);
+      setTimeout(resolve, 4000);
     });
   });
 }
