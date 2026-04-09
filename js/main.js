@@ -24,7 +24,7 @@ import { openWindow, focusWindow, closeWindow, minimizeWindow, unminimizeWindow,
 import { registerAbout }       from './windows/about.js';
 import { registerProjects, openCategoryWindow, openProjectDetail, selectCatFolder, selectProjectFolder } from './windows/projects.js';
 import { registerSkills, showSkillsSection, switchTab } from './windows/skills.js';
-import { registerContact, sendContactForm } from './windows/contact.js';
+import { registerContact, sendContactForm, resetContactForm } from './windows/contact.js';
 import { registerNotes }       from './windows/notes.js';
 import { registerRecycle, msRestoreClick } from './windows/recycle.js';
 import { registerCVDownload, buildCVDownload, downloadFile } from './windows/cvDownload.js';
@@ -111,7 +111,8 @@ window.showSkillsSection = showSkillsSection;
 window.switchTab         = switchTab;
 
 // Contact
-window.sendContactForm = sendContactForm;
+window.sendContactForm  = sendContactForm;
+window.resetContactForm = resetContactForm;
 
 // CV
 window.downloadFile = downloadFile;

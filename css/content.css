@@ -82,6 +82,15 @@
 }
 .compose-send-btn:hover { background: #c8c4bc; }
 .compose-send-btn:active { border-color: #888 #fff #fff #888; }
+.compose-send-btn:disabled { opacity: 0.6; cursor: default; }
+
+/* XP-style spinner for contact sending state */
+.xp-spinner {
+  width: 14px; height: 14px; border: 2px solid #d4d0c8;
+  border-top-color: #0a246a; border-radius: 50%;
+  animation: xpSpin 0.7s linear infinite; flex-shrink: 0;
+}
+@keyframes xpSpin { to { transform: rotate(360deg); } }
 
 /* Notepad style */
 .notepad-area {

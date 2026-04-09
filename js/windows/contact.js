@@ -1,12 +1,15 @@
 // ===== CONTACT WINDOW =====
 import { state } from '../state.js';
 
+// TODO: Replace with your Formspree form ID from https://formspree.io
+const FORMSPREE_ID = 'xdapvlev';
+
 function buildContact(body) {
   body.innerHTML = `
     <div class="outlook-layout">
       <div class="outlook-toolbar">
-        <div class="outlook-btn"><span class="outlook-btn-icon">📨</span>Send</div>
-        <div class="outlook-btn"><span class="outlook-btn-icon">📋</span>Copy</div>
+        <div class="outlook-btn" onclick="sendContactForm()"><span class="outlook-btn-icon">📨</span>Send</div>
+        <div class="outlook-btn" onclick="resetContactForm()"><span class="outlook-btn-icon">🗑️</span>Clear</div>
         <div class="outlook-btn"><span class="outlook-btn-icon">📎</span>Attach</div>
         <div style="flex:1;"></div>
         <div class="outlook-btn"><span class="outlook-btn-icon">🔒</span>Secure</div>
@@ -18,7 +21,7 @@ function buildContact(body) {
         </div>
         <div class="compose-field">
           <span class="compose-label">To:</span>
-          <input class="compose-input" id="contact-to" placeholder="your@email.com" />
+          <input class="compose-input" id="contact-to" placeholder="your@email.com" type="email" />
         </div>
         <div class="compose-field">
           <span class="compose-label">Subject:</span>
@@ -29,8 +32,9 @@ function buildContact(body) {
           <span class="compose-label" style="padding-top:4px;">Message:</span>
           <textarea class="compose-input area" id="contact-msg" placeholder="Type your message here...&#10;&#10;I'd love to hear from you!"></textarea>
         </div>
+
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <button class="compose-send-btn" onclick="sendContactForm()">📨 Send Message</button>
+          <button class="compose-send-btn" id="contact-send-btn" onclick="sendContactForm()">📨 Send Message</button>
           <div style="flex:1;"></div>
           <div style="font-size:10px;color:#666;">
             📎 Also reach me at:<br>
@@ -38,22 +42,98 @@ function buildContact(body) {
             <a href="https://github.com/Maksim-Manojlovic" target="_blank" style="color:#0000cc;">GitHub</a>
           </div>
         </div>
-        <div id="contact-msg-sent" style="display:none;background:#d8f0d8;border:1px solid #007700;padding:6px 10px;font-size:11px;color:#007700;">
-          ✅ Message sent! Maksim will get back to you soon.
+
+        <!-- Status messages -->
+        <div id="contact-sending" style="display:none;">
+          <div style="background:#f0f0f0;border:1px solid #d4d0c8;padding:8px 10px;font-size:11px;color:#444;display:flex;align-items:center;gap:8px;">
+            <div class="xp-spinner"></div>
+            Sending message, please wait...
+          </div>
+        </div>
+        <div id="contact-msg-sent" style="display:none;background:#d8f0d8;border:1px solid #007700;padding:8px 10px;font-size:11px;color:#007700;">
+          ✅ Message sent successfully! Maksim will get back to you soon.
+        </div>
+        <div id="contact-msg-error" style="display:none;background:#fdd;border:1px solid #cc0000;padding:8px 10px;font-size:11px;color:#cc0000;">
+          ❌ <span id="contact-error-text">Failed to send. Please try again or email directly.</span>
         </div>
       </div>
     </div>`;
 }
 
-export function sendContactForm() {
-  const to = document.getElementById('contact-to').value;
-  const subject = document.getElementById('contact-subject').value;
-  const msg = document.getElementById('contact-msg').value;
-  if (!to || !msg) { alert('Please fill in your email and message!'); return; }
-  const mailto = `mailto:mr.maksim.manojlovic@gmail.com?subject=${encodeURIComponent(subject||'Portfolio Contact')}&body=${encodeURIComponent(`From: ${to}\n\n${msg}`)}`;
-  window.open(mailto, '_blank');
-  const sent = document.getElementById('contact-msg-sent');
-  if (sent) sent.style.display = 'block';
+export async function sendContactForm() {
+  const toEl      = document.getElementById('contact-to');
+  const subjectEl = document.getElementById('contact-subject');
+  const msgEl     = document.getElementById('contact-msg');
+  const sendBtn   = document.getElementById('contact-send-btn');
+  const sending   = document.getElementById('contact-sending');
+  const sent      = document.getElementById('contact-msg-sent');
+  const errorBox  = document.getElementById('contact-msg-error');
+  const errorText = document.getElementById('contact-error-text');
+
+  if (!toEl || !msgEl) return;
+
+  const email   = toEl.value.trim();
+  const subject = subjectEl?.value.trim() || 'Portfolio Contact';
+  const message = msgEl.value.trim();
+
+  // Validate
+  if (!email) { toEl.focus(); toEl.style.borderColor = '#cc0000'; return; }
+  if (!message) { msgEl.focus(); msgEl.style.borderColor = '#cc0000'; return; }
+  toEl.style.borderColor = '';
+  msgEl.style.borderColor = '';
+
+  // Show loading state
+  sendBtn.disabled = true;
+  sendBtn.textContent = '⏳ Sending...';
+  sending.style.display = 'block';
+  sent.style.display    = 'none';
+  errorBox.style.display = 'none';
+
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email, subject, message })
+    });
+
+    sending.style.display = 'none';
+
+    if (res.ok) {
+      sent.style.display = 'block';
+      sendBtn.textContent = '✅ Sent!';
+      sendBtn.disabled = true;
+      // Clear fields
+      toEl.value = '';
+      subjectEl.value = '';
+      msgEl.value = '';
+    } else {
+      const data = await res.json().catch(() => ({}));
+      errorText.textContent = data?.errors?.[0]?.message || 'Failed to send. Please try again.';
+      errorBox.style.display = 'block';
+      sendBtn.disabled = false;
+      sendBtn.textContent = '📨 Send Message';
+    }
+  } catch {
+    sending.style.display = 'none';
+    errorText.textContent = 'Network error. Check your connection and try again.';
+    errorBox.style.display = 'block';
+    sendBtn.disabled = false;
+    sendBtn.textContent = '📨 Send Message';
+  }
+}
+
+export function resetContactForm() {
+  const fields = ['contact-to', 'contact-subject', 'contact-msg'];
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; el.style.borderColor = ''; }
+  });
+  ['contact-sending', 'contact-msg-sent', 'contact-msg-error'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const btn = document.getElementById('contact-send-btn');
+  if (btn) { btn.disabled = false; btn.textContent = '📨 Send Message'; }
 }
 
 export function registerContact() {
