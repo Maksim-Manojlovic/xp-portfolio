@@ -15,3 +15,8 @@ dist/
 
 # Large raw/original assets (uncomment if needed)
 # public/assets/videos/
+
+# Assets
+public/assets/icons/
+public/assets/images/
+public/assets/sound/

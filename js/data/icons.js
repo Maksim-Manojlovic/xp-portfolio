@@ -15,24 +15,7 @@ export const iconDefs = [
 ];
 
 export const XP_ICONS = {
-  'about': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- Monitor body -->
-    <rect x="4" y="4" width="32" height="22" rx="2" fill="#d4d0c8" stroke="#888" stroke-width="1"/>
-    <rect x="6" y="6" width="28" height="18" rx="1" fill="#0050d0"/>
-    <!-- Screen content lines -->
-    <rect x="9" y="10" width="14" height="2" rx="1" fill="rgba(255,255,255,0.8)"/>
-    <rect x="9" y="14" width="10" height="2" rx="1" fill="rgba(255,255,255,0.6)"/>
-    <rect x="9" y="18" width="12" height="2" rx="1" fill="rgba(255,255,255,0.5)"/>
-    <!-- Windows flag on screen -->
-    <rect x="24" y="9" width="5" height="5" rx="0.5" fill="rgba(255,255,255,0)"/>
-    <rect x="24" y="9" width="2" height="2" fill="#e74c3c"/>
-    <rect x="27" y="9" width="2" height="2" fill="#2ecc71"/>
-    <rect x="24" y="12" width="2" height="2" fill="#3498db"/>
-    <rect x="27" y="12" width="2" height="2" fill="#f39c12"/>
-    <!-- Stand -->
-    <rect x="17" y="26" width="6" height="4" fill="#c8c4b8"/>
-    <rect x="13" y="29" width="14" height="3" rx="1" fill="#b0aca0"/>
-  </svg>`,
+  'about': `<img src="public/assets/icons/121.ico" width="40" height="40" style="image-rendering:pixelated;" />`,
 
   'projects': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
     <!-- Folder back -->

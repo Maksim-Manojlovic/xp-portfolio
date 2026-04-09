@@ -58,7 +58,7 @@ function buildAbout(body) {
 
 export function registerAbout() {
   state.windowDefs.about = {
-    title: 'About Maksim Manojlovic', icon: '💻', w: 680, h: 480,
+    title: 'About Maksim Manojlovic', icon: '<img src="public/assets/icons/121.ico" width="16" height="16" style="image-rendering:pixelated;vertical-align:middle;" />', w: 680, h: 480,
     menuBar: ['File', 'View', 'Tools', 'Help'],
     toolbar: true, addressBar: { text: 'C:\\Users\\Maksim\\About Me' },
     statusBar: true,
