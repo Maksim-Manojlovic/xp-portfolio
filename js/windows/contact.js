@@ -17,11 +17,11 @@ function buildContact(body) {
       <div class="compose-area">
         <div class="compose-field">
           <span class="compose-label">From:</span>
-          <input class="compose-input" value="mr.maksim.manojlovic@gmail.com" readonly />
+          <input class="compose-input" id="contact-from" placeholder="your@email.com" type="email" />
         </div>
         <div class="compose-field">
           <span class="compose-label">To:</span>
-          <input class="compose-input" id="contact-to" placeholder="your@email.com" type="email" />
+          <input class="compose-input" value="mr.maksim.manojlovic@gmail.com" readonly />
         </div>
         <div class="compose-field">
           <span class="compose-label">Subject:</span>
@@ -61,7 +61,7 @@ function buildContact(body) {
 }
 
 export async function sendContactForm() {
-  const toEl      = document.getElementById('contact-to');
+  const toEl      = document.getElementById('contact-from');
   const subjectEl = document.getElementById('contact-subject');
   const msgEl     = document.getElementById('contact-msg');
   const sendBtn   = document.getElementById('contact-send-btn');
@@ -123,7 +123,7 @@ export async function sendContactForm() {
 }
 
 export function resetContactForm() {
-  const fields = ['contact-to', 'contact-subject', 'contact-msg'];
+  const fields = ['contact-from', 'contact-subject', 'contact-msg'];
   fields.forEach(id => {
     const el = document.getElementById(id);
     if (el) { el.value = ''; el.style.borderColor = ''; }
