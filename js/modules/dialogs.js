@@ -45,7 +45,7 @@ export function openTurnOff() {
       body.innerHTML = `
         <div style="padding:0;height:100%;display:flex;flex-direction:column;">
           <div style="background:var(--xp-title-active);padding:12px 16px;display:flex;align-items:center;gap:10px;">
-            <span style="font-size:24px;">🔴</span>
+            <img src="public/assets/icons/turn_off.ico" style="width:24px;height:24px;image-rendering:pixelated;">
             <div style="color:#fff;font-size:12px;font-weight:700;">Turn off computer</div>
           </div>
           <div style="padding:16px;flex:1;">
@@ -62,7 +62,7 @@ export function openTurnOff() {
               <div onclick="turnOffAction('off')"
                 style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 10px;background:#d4d0c8;border:2px solid;border-color:#fff #888 #888 #fff;width:80px;"
                 onmouseover="this.style.background='#dde8f8'" onmouseout="this.style.background='#d4d0c8'">
-                <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#c00"/><rect x="14" y="7" width="4" height="10" rx="2" fill="#fff"/><path d="M10 10 A9 9 0 1 0 22 10" stroke="#fff" stroke-width="3" fill="none"/></svg>
+                <img src="public/assets/icons/turn_off.ico" style="width:32px;height:32px;image-rendering:pixelated;">
                 <span style="font-size:10px;font-weight:700;text-align:center;">Turn Off</span>
               </div>
               <div onclick="turnOffAction('restart')"
