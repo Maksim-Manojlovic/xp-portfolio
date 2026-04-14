@@ -14,7 +14,7 @@ import { initMenuCloseOnClick, buildMenuHTML, toggleMenu, menuAction } from './m
 import { showNotification }       from './modules/notification.js';
 import { desktopClick, sortIcons, selectIcon } from './modules/desktop.js';
 import { applyWallpaper, changeWallpaper, openWallpaperPicker } from './modules/wallpaper.js';
-import { openTurnOff, turnOffAction, openAboutDialog, openHelpWindow, openCheats, openSourceViewer } from './modules/dialogs.js';
+import { doLogOff, openTurnOff, turnOffAction, openAboutDialog, openHelpWindow, openCheats, openSourceViewer } from './modules/dialogs.js';
 import { toolbarBack, toolbarUp, toolbarSearch, toolbarFolders, toggleToolbar, toggleStatusBar, zoomWindow, toggleWordWrap, startInWindowSearch, openPropertiesDialog } from './modules/toolbar.js';
 
 // Window manager
@@ -91,6 +91,7 @@ window.toggleMenu        = toggleMenu;
 window.menuAction        = menuAction;
 
 // Dialogs
+window.doLogOff        = doLogOff;
 window.openTurnOff     = openTurnOff;
 window.turnOffAction   = turnOffAction;
 window.openAboutDialog = openAboutDialog;

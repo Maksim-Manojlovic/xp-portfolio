@@ -3,6 +3,37 @@ import { state } from '../state.js';
 import { showNotification } from './notification.js';
 import { closeStartMenu } from './startMenu.js';
 
+export function doLogOff() {
+  closeStartMenu();
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;background:#000c2a;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;cursor:pointer;';
+  overlay.innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div style="font-family:Tahoma,sans-serif;color:#fff;font-size:13px;font-weight:700;text-shadow:1px 1px 2px rgba(0,0,0,0.8);">
+        Logging off Maksim Manojlovic...
+      </div>
+      <div style="width:200px;height:6px;background:#0a2060;border-radius:3px;overflow:hidden;">
+        <div id="logoff-bar" style="height:100%;width:0%;background:linear-gradient(to right,#4d94ff,#1a54ba);transition:width 2s ease;border-radius:3px;"></div>
+      </div>
+      <div style="color:rgba(255,255,255,0.5);font-size:10px;font-family:Tahoma,sans-serif;">Click to cancel</div>
+    </div>`;
+  overlay.onclick = () => overlay.remove();
+  document.body.appendChild(overlay);
+  setTimeout(() => { const bar = document.getElementById('logoff-bar'); if (bar) bar.style.width = '100%'; }, 50);
+  setTimeout(() => {
+    if (!overlay.parentNode) return;
+    overlay.remove();
+    const ws = document.getElementById('welcome-screen');
+    if (ws) {
+      ws.style.display = 'flex';
+      const desktop = document.getElementById('desktop');
+      const taskbar = document.getElementById('taskbar');
+      if (desktop) desktop.style.display = 'none';
+      if (taskbar) taskbar.style.display = 'none';
+    }
+  }, 2500);
+}
+
 export function openTurnOff() {
   const winId = 'turnoff-win';
   if (state.windows[winId]) { window.focusWindow(winId); return; }

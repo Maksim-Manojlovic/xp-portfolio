@@ -1,43 +1,212 @@
 /* ===== START MENU ===== */
 #start-menu {
-  position: fixed; bottom: 30px; left: 0; width: 300px;
-  background: #fff; border: 2px solid #0a246a;
-  border-bottom: none; border-radius: 6px 6px 0 0;
+  position: fixed; bottom: 30px; left: 0; width: 430px;
+  background: #fff;
+  border: 2px solid #0a246a;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
   display: none; flex-direction: column;
-  box-shadow: 4px 0 8px rgba(0,0,0,0.3);
+  box-shadow: 4px 0 16px rgba(0,0,0,0.5);
   z-index: 2000; overflow: hidden;
+  font-family: 'Tahoma', sans-serif;
 }
+
+/* ── Header ── */
 .start-menu-header {
-  background: var(--xp-title-active); padding: 8px 12px;
-  display: flex; align-items: center; gap: 10px; min-height: 54px;
+  background: linear-gradient(to bottom,
+    #2060d8 0%,
+    #1a54cc 8%,
+    #1650c8 20%,
+    #154cc4 40%,
+    #1450c4 60%,
+    #1248b8 80%,
+    #0e40a8 100%
+  );
+  padding: 8px 12px 10px 10px;
+  display: flex; align-items: center; gap: 10px;
+  min-height: 64px;
+  position: relative;
 }
+
+/* Thin orange accent stripe on header left edge */
+.start-menu-header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(to bottom, #ffb400, #e07800);
+}
+
 .start-menu-avatar {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: linear-gradient(135deg, #4d94ff, #0050d0);
-  border: 2px solid rgba(255,255,255,0.5);
-  display: flex; align-items: center; justify-content: center; font-size: 22px;
+  width: 46px; height: 46px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #5aa0ff, #0050d0);
+  border: 2px solid rgba(255,255,255,0.65);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
-.start-menu-name { color: #fff; font-size: 13px; font-weight: 700; text-shadow: 1px 1px 1px rgba(0,0,0,0.5); }
-.start-menu-body { display: flex; flex: 1; }
-.start-menu-left { flex: 1; padding: 6px 0; border-right: 1px solid #d4d0c8; }
-.start-menu-right { width: 130px; background: #d8dfe8; padding: 6px 0; }
-.start-item { display: flex; align-items: center; gap: 8px; padding: 5px 10px; cursor: pointer; font-size: 11px; color: #000; }
-.start-item:hover { background: var(--xp-blue-mid); color: #fff; }
-.start-item-icon { font-size: 22px; flex-shrink: 0; }
-.start-item-text { line-height: 1.3; }
-.start-item-title { font-weight: 700; font-size: 11px; }
-.start-item-sub { font-size: 10px; opacity: 0.8; }
-.start-sep { height: 1px; background: #d4d0c8; margin: 4px 0; }
-.start-right-item { display: flex; align-items: center; gap: 6px; padding: 4px 8px; cursor: pointer; font-size: 11px; color: #000; }
-.start-right-item:hover { background: var(--xp-blue-mid); color: #fff; }
-.start-right-icon { font-size: 16px; }
+
+.start-menu-name {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  letter-spacing: 0.2px;
+}
+
+/* ── Body ── */
+.start-menu-body {
+  display: flex;
+  flex: 1;
+  min-height: 310px;
+}
+
+/* ── Left panel ── */
+.start-menu-left {
+  flex: 1;
+  padding: 5px 0;
+  border-right: 1px solid #bbb8b0;
+  background: #fff;
+}
+
+.start-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px 5px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #000;
+}
+
+.start-item:hover {
+  background: linear-gradient(to bottom, #2f6fde 0%, #2258c8 100%);
+  color: #fff;
+}
+
+.start-item:hover .start-item-sub {
+  color: rgba(255,255,255,0.85);
+}
+
+.start-item-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+  line-height: 1;
+}
+
+.start-item-text { line-height: 1.35; }
+
+.start-item-title {
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.start-item-sub {
+  font-size: 10px;
+  color: #555;
+}
+
+/* ── Right panel ── */
+.start-menu-right {
+  width: 160px;
+  background: linear-gradient(to bottom, #dce8f8 0%, #c8d8f2 100%);
+  padding: 5px 0;
+}
+
+.start-right-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.start-right-item:hover {
+  background: linear-gradient(to bottom, #2f6fde 0%, #2258c8 100%);
+  color: #fff;
+}
+
+.start-right-icon {
+  font-size: 18px;
+  width: 20px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+/* ── Separators ── */
+.start-sep {
+  height: 1px;
+  background: linear-gradient(to right, #c8c4bc 0%, #e8e4dc 100%);
+  margin: 4px 0;
+}
+
+.start-menu-right .start-sep {
+  background: linear-gradient(to right, #a8b8d8 0%, #dce8f8 100%);
+}
+
+/* ── Footer ── */
 .start-menu-footer {
-  background: #d4d0c8; border-top: 1px solid #a0a0a0;
-  display: flex; justify-content: flex-end; padding: 4px 6px; gap: 6px;
+  background: linear-gradient(to bottom, #dbd7cf 0%, #c8c4bc 100%);
+  border-top: 1px solid #9a9690;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 8px;
+  gap: 5px;
 }
+
 .start-footer-btn {
-  display: flex; align-items: center; gap: 4px; padding: 3px 8px;
-  background: var(--xp-silver-dark); border: 1px solid #888;
-  border-top-color: #fff; cursor: pointer; font-size: 11px; border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px 4px 8px;
+  background: linear-gradient(to bottom, #ece8e0 0%, #d8d4cc 100%);
+  border: 1px solid #7a7670;
+  border-top-color: #e0ddd8;
+  border-left-color: #e0ddd8;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: 'Tahoma', sans-serif;
+  color: #000;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
 }
-.start-footer-btn:hover { background: #c8c4bc; }
+
+.start-footer-btn:hover {
+  background: linear-gradient(to bottom, #f4f0e8 0%, #e4e0d8 100%);
+}
+
+.start-footer-btn:active {
+  background: linear-gradient(to bottom, #c8c4bc 0%, #d4d0c8 100%);
+  border-top-color: #7a7670;
+  border-left-color: #7a7670;
+  border-bottom-color: #e0ddd8;
+  border-right-color: #e0ddd8;
+}
+
+.start-footer-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.start-footer-icon.logoff {
+  background: radial-gradient(circle at 40% 35%, #ffe060, #e8a000);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.start-footer-icon.turnoff {
+  background: radial-gradient(circle at 40% 35%, #ff6060, #cc0000);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
