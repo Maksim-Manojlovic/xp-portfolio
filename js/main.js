@@ -29,6 +29,16 @@ import { registerNotes }       from './windows/notes.js';
 import { registerRecycle, msRestoreClick } from './windows/recycle.js';
 import { registerCVDownload, buildCVDownload, downloadFile } from './windows/cvDownload.js';
 import { registerStats }       from './windows/stats.js';
+import {
+  registerPaint, paintUndo, paintRedo, paintNew, paintSave, paintOpen,
+  paintSetAsWallpaper, paintSelectAll, paintClearImage, paintInvertColors,
+  paintFlip, paintRotate, paintShowAttributes, paintApplyAttributes,
+  paintShowFlipRotate, paintApplyFlipRotate,
+  paintSelectTool, paintSetFG, paintSetBG, paintPickCustomColor,
+  paintSetLineWidth, paintSetFillMode, paintSetEraserSize,
+  paintSetBrushShape, paintSetAirbrushSize, paintSetZoom,
+  paintSetSelMode, paintToggleTextStyle, paintTextStyle,
+} from './windows/paint.js';
 
 // Games
 import { playRecycle, toggleMute } from './modules/audio.js';
@@ -45,6 +55,7 @@ registerNotes();
 registerRecycle();
 registerCVDownload();
 registerStats();
+registerPaint();
 
 // ── Expose functions globally for HTML onclick attributes ─────────────
 // Window management
@@ -125,6 +136,36 @@ window.downloadFile = downloadFile;
 
 // Recycle
 window.msRestoreClick = msRestoreClick;
+
+// Paint
+window.paintUndo              = paintUndo;
+window.paintRedo              = paintRedo;
+window.paintNew               = paintNew;
+window.paintSave              = paintSave;
+window.paintOpen              = paintOpen;
+window.paintSetAsWallpaper    = paintSetAsWallpaper;
+window.paintSelectAll         = paintSelectAll;
+window.paintClearImage        = paintClearImage;
+window.paintInvertColors      = paintInvertColors;
+window.paintFlip              = paintFlip;
+window.paintRotate            = paintRotate;
+window.paintShowAttributes    = paintShowAttributes;
+window.paintApplyAttributes   = paintApplyAttributes;
+window.paintShowFlipRotate    = paintShowFlipRotate;
+window.paintApplyFlipRotate   = paintApplyFlipRotate;
+window.paintSelectTool        = paintSelectTool;
+window.paintSetFG             = paintSetFG;
+window.paintSetBG             = paintSetBG;
+window.paintPickCustomColor   = paintPickCustomColor;
+window.paintSetLineWidth      = paintSetLineWidth;
+window.paintSetFillMode       = paintSetFillMode;
+window.paintSetEraserSize     = paintSetEraserSize;
+window.paintSetBrushShape     = paintSetBrushShape;
+window.paintSetAirbrushSize   = paintSetAirbrushSize;
+window.paintSetZoom           = paintSetZoom;
+window.paintSetSelMode        = paintSetSelMode;
+window.paintToggleTextStyle   = paintToggleTextStyle;
+window.paintTextStyle         = paintTextStyle;
 
 // Games
 window.startGame       = startGame;

@@ -12,6 +12,7 @@ export const iconDefs = [
   { id: 'recycle',     label: 'Recycle Bin',  x: 14,  y: 398 },
   { id: 'game',        label: 'Destroy.exe',  x: 100, y: 398, customIcon: true },
   { id: 'stats',       label: 'My Stats',     x: 14,  y: 494 },
+  { id: 'paint',       label: 'Paint',        x: 100, y: 494 },
 ];
 
 export const XP_ICONS = {
@@ -90,6 +91,21 @@ export const XP_ICONS = {
     <!-- X axis -->
     <line x1="8" y1="30" x2="8" y2="7" stroke="#888" stroke-width="1"/>
     <line x1="8" y1="30" x2="37" y2="30" stroke="#888" stroke-width="1"/>
+  </svg>`,
+
+  'paint': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- Palette -->
+    <ellipse cx="20" cy="22" rx="16" ry="14" fill="#f0e8d0" stroke="#888" stroke-width="1"/>
+    <circle cx="20" cy="22" r="5" fill="#c8c0a8" stroke="#888" stroke-width="1"/>
+    <!-- Color dots -->
+    <circle cx="10" cy="16" r="3" fill="#ff0000"/>
+    <circle cx="15" cy="11" r="3" fill="#ffaa00"/>
+    <circle cx="22" cy="9"  r="3" fill="#ffff00"/>
+    <circle cx="29" cy="12" r="3" fill="#00bb00"/>
+    <circle cx="32" cy="19" r="3" fill="#0000ff"/>
+    <!-- Brush -->
+    <rect x="28" y="2" width="5" height="14" rx="2" transform="rotate(35 30 9)" fill="#c08040" stroke="#888" stroke-width="0.8"/>
+    <path d="M24,8 Q30,6 33,12 Q28,14 24,8Z" fill="#6040c0" stroke="#555" stroke-width="0.8"/>
   </svg>`,
 
   'game': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">

@@ -1,0 +1,244 @@
+/* ===== PAINT APPLICATION ===== */
+.paint-app {
+  display: flex;
+  height: 100%;
+  background: #808080;
+  overflow: hidden;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+}
+
+/* ── Toolbox ── */
+.paint-toolbox {
+  width: 52px;
+  background: var(--xp-silver);
+  border-right: 1px solid #a0a0a0;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.paint-tools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2px 2px 4px;
+  border-bottom: 2px solid #a0a0a0;
+}
+
+.paint-tool-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--xp-silver);
+  border: 1px solid transparent;
+}
+.paint-tool-btn:hover { border-color: #fff #888 #888 #fff; }
+.paint-tool-btn.active {
+  border-color: #888 #fff #fff #888;
+  background: var(--xp-silver-dark);
+  box-shadow: inset 1px 1px 1px rgba(0,0,0,0.15);
+}
+.paint-tool-btn svg { pointer-events: none; }
+
+/* ── Tool Options ── */
+.paint-options {
+  padding: 4px 3px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+.paint-opts-label { font-size: 9px; color: #666; padding: 2px 1px 0; }
+.paint-opts-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; }
+.paint-opts-col   { display: flex; flex-direction: column; gap: 1px; }
+.paint-opts-lines { display: flex; flex-direction: column; gap: 1px; }
+.paint-opts-fill  { display: flex; flex-direction: column; gap: 1px; margin-bottom: 4px; }
+.paint-opts-eraser{ display: flex; flex-wrap: wrap; gap: 3px; padding: 3px 2px; align-items: flex-end; }
+.paint-opt-btn {
+  width: 22px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-size: 10px;
+  background: var(--xp-silver);
+}
+.paint-opt-btn:hover { border-color: #fff #888 #888 #fff; }
+.paint-opt-btn.active { border-color: #888 #fff #fff #888; background: var(--xp-silver-dark); }
+
+/* ── Main area ── */
+.paint-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ── Text toolbar (shown only when Text tool active) ── */
+.paint-text-toolbar {
+  display: none;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  background: var(--xp-silver);
+  border-bottom: 1px solid #a0a0a0;
+  flex-shrink: 0;
+  height: 28px;
+}
+.paint-text-toolbar select,
+.paint-text-toolbar input[type="number"] {
+  height: 20px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 11px;
+  border: 1px solid #7f9db9;
+  background: #fff;
+  padding: 0 2px;
+}
+.paint-text-toolbar input[type="number"] { width: 36px; }
+.paint-text-tb-btn {
+  width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-size: 12px; font-family: serif;
+  background: var(--xp-silver);
+}
+.paint-text-tb-btn:hover  { border-color: #fff #888 #888 #fff; }
+.paint-text-tb-btn.active { border-color: #888 #fff #fff #888; background: var(--xp-silver-dark); }
+
+/* ── Canvas area ── */
+.paint-canvas-area {
+  flex: 1;
+  overflow: auto;
+  background: #808080;
+  padding: 8px;
+  min-height: 0;
+}
+.paint-canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+#paint-canvas  { display: block; background: #fff; cursor: crosshair; }
+#paint-overlay { position: absolute; top: 0; left: 0; pointer-events: none; }
+
+/* Resize handles */
+.paint-resize-e,
+.paint-resize-s,
+.paint-resize-se {
+  position: absolute;
+  width: 7px; height: 7px;
+  background: #fff;
+  border: 1px solid #000;
+  z-index: 10;
+}
+.paint-resize-e  { right: -4px; top: 50%; transform: translateY(-50%); cursor: e-resize;  pointer-events: all; }
+.paint-resize-s  { bottom: -4px; left: 50%; transform: translateX(-50%); cursor: s-resize; pointer-events: all; }
+.paint-resize-se { bottom: -4px; right: -4px; cursor: se-resize; pointer-events: all; }
+
+/* Text input overlay */
+#paint-text-input {
+  position: absolute;
+  min-width: 40px; min-height: 20px;
+  background: transparent;
+  border: 1px dashed #000;
+  outline: none;
+  resize: none;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #000;
+  padding: 1px 2px;
+  z-index: 20;
+  overflow: hidden;
+  cursor: text;
+}
+
+/* ── Color panel ── */
+.paint-color-panel {
+  height: 38px;
+  background: var(--xp-silver);
+  border-top: 1px solid #fff;
+  box-shadow: inset 0 1px 0 #fff;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.paint-fg-bg {
+  position: relative;
+  width: 36px; height: 32px;
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+.paint-bg-swatch {
+  position: absolute;
+  width: 22px; height: 22px;
+  border: 2px solid; border-color: #888 #fff #fff #888;
+  right: 0; bottom: 0;
+  cursor: pointer; background: #ffffff; z-index: 1;
+}
+.paint-fg-swatch {
+  position: absolute;
+  width: 22px; height: 22px;
+  border: 2px solid; border-color: #888 #fff #fff #888;
+  left: 0; top: 0;
+  cursor: pointer; background: #000000; z-index: 2;
+}
+.paint-palette {
+  display: grid;
+  grid-template-columns: repeat(14, 16px);
+  grid-template-rows: repeat(2, 14px);
+  gap: 1px;
+  flex-shrink: 0;
+}
+.paint-swatch {
+  width: 16px; height: 14px;
+  border: 1px solid; border-color: #888 #fff #fff #888;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.paint-swatch:hover { outline: 1px solid #000; z-index: 1; position: relative; }
+
+/* ── Status bar ── */
+.paint-status {
+  height: 22px;
+  background: var(--xp-silver);
+  border-top: 1px solid #a0a0a0;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+.paint-status-panel {
+  padding: 0 8px;
+  border-right: 1px solid #a0a0a0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.paint-status-panel:first-child { flex: 1; min-width: 0; overflow: hidden; }
+.paint-status-panel:last-child  { border-right: none; min-width: 90px; }
+
+/* ── Grid overlay ── */
+.paint-canvas-wrapper.show-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── Attributes dialog ── */
+.paint-attr-table { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; align-items: center; font-size: 11px; }
+.paint-attr-table input { width: 60px; height: 20px; border: 1px solid #7f9db9; font-size: 11px; padding: 0 3px; }

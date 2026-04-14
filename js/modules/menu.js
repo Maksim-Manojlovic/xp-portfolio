@@ -2,6 +2,52 @@
 import { showNotification } from './notification.js';
 
 export function getMenuItems(label, winId) {
+  // ── Paint-specific menus ──────────────────────────────────────────────────
+  if (winId === 'paint') {
+    if (label === 'File') return [
+      { icon:'📄', label:'New',             action: ()=>window.paintNew() },
+      { icon:'📂', label:'Open…',           action: ()=>window.paintOpen() },
+      { icon:'💾', label:'Save',            action: ()=>window.paintSave() },
+      { icon:'💾', label:'Save As… (PNG)',  action: ()=>window.paintSave() },
+      { sep:true },
+      { icon:'🖨️', label:'Print…',          action: ()=>window.print() },
+      { sep:true },
+      { icon:'🖼️', label:'Set as Desktop Wallpaper', action: ()=>window.paintSetAsWallpaper() },
+      { sep:true },
+      { icon:'🚪', label:'Exit',            action: ()=>window.closeWindow('paint') },
+    ];
+    if (label === 'Edit') return [
+      { icon:'↩️', label:'Undo',            shortcut:'Ctrl+Z', action: ()=>window.paintUndo() },
+      { icon:'↪️', label:'Repeat',          shortcut:'Ctrl+Y', action: ()=>window.paintRedo() },
+      { sep:true },
+      { icon:'✂️', label:'Cut',             shortcut:'Ctrl+X', action: ()=>showNotification('Cut','Select an area first.') },
+      { icon:'📋', label:'Copy',            shortcut:'Ctrl+C', action: ()=>showNotification('Copy','Select an area first.') },
+      { icon:'📌', label:'Paste',           shortcut:'Ctrl+V', action: ()=>showNotification('Paste','Nothing in clipboard.') },
+      { icon:'🗑️', label:'Clear Selection', shortcut:'Del',    action: ()=>showNotification('Clear','Nothing selected.') },
+      { icon:'⬛', label:'Select All',      shortcut:'Ctrl+A', action: ()=>window.paintSelectAll() },
+      { sep:true },
+      { icon:'🗑️', label:'Clear Image',                        action: ()=>window.paintClearImage() },
+    ];
+    if (label === 'Image') return [
+      { icon:'🔄', label:'Flip/Rotate…',    action: ()=>window.paintShowFlipRotate() },
+      { sep:true },
+      { icon:'🎨', label:'Invert Colors',   shortcut:'Ctrl+I', action: ()=>window.paintInvertColors() },
+      { sep:true },
+      { icon:'📐', label:'Attributes…',     action: ()=>window.paintShowAttributes() },
+      { icon:'🗑️', label:'Clear Image',     action: ()=>window.paintClearImage() },
+    ];
+    if (label === 'Colors') return [
+      { icon:'🎨', label:'Edit Colors…',    action: ()=>window.paintPickCustomColor('paint','fg') },
+    ];
+    if (label === 'View') return [
+      { icon:'🔍', label:'Zoom In',         action: ()=>{ const P=window._paint; if(P) window.paintSetZoom(Math.min(8,P.zoomLevel===1?2:P.zoomLevel===2?6:8)); } },
+      { icon:'🔎', label:'Zoom Out',        action: ()=>{ const P=window._paint; if(P) window.paintSetZoom(Math.max(1,P.zoomLevel===8?6:P.zoomLevel===6?2:1)); } },
+      { icon:'1️⃣', label:'Normal Size (1x)', action: ()=>window.paintSetZoom(1) },
+      { sep:true },
+      { icon:'📦', label:'Toggle Grid',     action: ()=>{ const w=document.getElementById('paint-wrapper-paint'); if(w) w.classList.toggle('show-grid'); } },
+    ];
+  }
+
   const menus = {
     'File': [
       { icon:'📄', label:'New Window',       action: ()=>window.openWindow('projects') },
@@ -80,6 +126,10 @@ export function getMenuItems(label, winId) {
       { icon:'💀', label:'Expert',       disabled: true },
     ],
   };
+  // Generic Image/Colors for non-paint windows
+  if (label === 'Image')  return [{ icon:'🖼️', label:'No image options', disabled:true }];
+  if (label === 'Colors') return [{ icon:'🎨', label:'No color options', disabled:true }];
+
   return menus[label] || [
     { icon:'🤷', label:`${label} menu`, disabled: true },
     { sep: true },
