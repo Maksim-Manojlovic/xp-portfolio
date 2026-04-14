@@ -17,22 +17,7 @@ export const iconDefs = [
 export const XP_ICONS = {
   'about': `<img src="public/assets/icons/121.ico" width="40" height="40" style="image-rendering:pixelated;" />`,
 
-  'projects': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- Folder back -->
-    <rect x="2" y="12" width="36" height="24" rx="2" fill="#f0c040"/>
-    <!-- Folder tab -->
-    <path d="M2,14 L2,12 Q2,10 4,10 L16,10 Q18,10 20,12 L22,14 Z" fill="#f0c040"/>
-    <!-- Folder front shade -->
-    <rect x="2" y="14" width="36" height="22" rx="0" fill="#f8d060"/>
-    <!-- Folder highlight top -->
-    <rect x="2" y="14" width="36" height="3" rx="0" fill="#fce88a" opacity="0.6"/>
-    <!-- Shadow bottom -->
-    <rect x="2" y="33" width="36" height="3" rx="0 0 2 2" fill="#d4a820" opacity="0.5"/>
-    <!-- Files inside hint -->
-    <rect x="10" y="20" width="20" height="2" rx="1" fill="rgba(255,255,255,0.7)"/>
-    <rect x="10" y="24" width="15" height="2" rx="1" fill="rgba(255,255,255,0.5)"/>
-    <rect x="10" y="28" width="17" height="2" rx="1" fill="rgba(255,255,255,0.4)"/>
-  </svg>`,
+  'projects': `<img src="public/assets/icons/my_documents.ico" width="40" height="40" style="image-rendering:pixelated;" />`,
 
   'skills': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
     <!-- Outer gear ring -->
@@ -52,59 +37,11 @@ export const XP_ICONS = {
     <circle cx="20" cy="20" r="3" fill="#d4d0c8"/>
   </svg>`,
 
-  'contact': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- Envelope body -->
-    <rect x="3" y="9" width="34" height="24" rx="2" fill="#dde8f8" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Envelope flap -->
-    <path d="M3,9 L20,23 L37,9 Z" fill="#c8d8f0" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Envelope sides -->
-    <line x1="3" y1="33" x2="14" y2="22" stroke="#7f9db9" stroke-width="1"/>
-    <line x1="37" y1="33" x2="26" y2="22" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Outlook Express blue stripe -->
-    <rect x="3" y="9" width="34" height="5" rx="2 2 0 0" fill="#1460d4" opacity="0.9"/>
-    <!-- @ symbol -->
-    <text x="20" y="30" text-anchor="middle" font-size="10" fill="#0a246a" font-weight="bold">@</text>
-  </svg>`,
+  'contact': `<img src="public/assets/icons/contact.ico" width="40" height="40" style="image-rendering:pixelated;" />`,
 
-  'notes': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- Notepad body -->
-    <rect x="6" y="4" width="28" height="34" rx="1" fill="#fff" stroke="#888" stroke-width="1"/>
-    <!-- Top binding -->
-    <rect x="6" y="4" width="28" height="6" fill="#fffacd" stroke="#888" stroke-width="1"/>
-    <!-- Spiral holes -->
-    <circle cx="12" cy="7" r="1.5" fill="#888"/>
-    <circle cx="20" cy="7" r="1.5" fill="#888"/>
-    <circle cx="28" cy="7" r="1.5" fill="#888"/>
-    <!-- Text lines -->
-    <rect x="10" y="14" width="20" height="2" rx="1" fill="#c8d4e8"/>
-    <rect x="10" y="18" width="16" height="2" rx="1" fill="#c8d4e8"/>
-    <rect x="10" y="22" width="18" height="2" rx="1" fill="#c8d4e8"/>
-    <rect x="10" y="26" width="12" height="2" rx="1" fill="#c8d4e8"/>
-    <rect x="10" y="30" width="15" height="2" rx="1" fill="#c8d4e8"/>
-    <!-- Pencil -->
-    <rect x="28" y="20" width="4" height="14" rx="1" transform="rotate(-30 30 27)" fill="#f8d060"/>
-    <polygon points="28,32 32,32 30,36" fill="#ffaa55" transform="rotate(-30 30 27)"/>
-    <rect x="28" y="20" width="4" height="3" rx="0" transform="rotate(-30 30 27)" fill="#e87070"/>
-  </svg>`,
+  'notes': `<img src="public/assets/icons/notes.ico" width="40" height="40" style="image-rendering:pixelated;" />`,
 
-  'cv-download': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- Document -->
-    <rect x="6" y="2" width="22" height="28" rx="1" fill="#fff" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Folded corner -->
-    <path d="M22,2 L28,8 L22,8 Z" fill="#c8d8f0"/>
-    <path d="M22,2 L28,8 L22,8 Z" fill="none" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Lines -->
-    <rect x="9" y="12" width="14" height="2" rx="1" fill="#c8d4e8"/>
-    <rect x="9" y="16" width="10" height="2" rx="1" fill="#c8d4e8"/>
-    <rect x="9" y="20" width="12" height="2" rx="1" fill="#c8d4e8"/>
-    <rect x="9" y="24" width="8" height="2" rx="1" fill="#c8d4e8"/>
-    <!-- Red CV badge -->
-    <rect x="18" y="22" width="18" height="14" rx="2" fill="#c00"/>
-    <text x="27" y="32" text-anchor="middle" font-size="8" fill="#fff" font-weight="bold">CV</text>
-    <!-- Down arrow -->
-    <polygon points="27,25 23,29 31,29" fill="#fff"/>
-    <rect x="26" y="28" width="2" height="4" fill="#fff"/>
-  </svg>`,
+  'cv-download': `<img src="public/assets/icons/cv.ico" width="40" height="40" style="image-rendering:pixelated;" />`,
 
   'github': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
     <!-- GitHub Octocat simplified -->
@@ -136,20 +73,7 @@ export const XP_ICONS = {
     <path d="M17,20 Q17,14 22,14 Q27,14 27,20 L27,28 L22,28 L22,20 Q22,18 20,18 Q17,18 17,20" fill="#fff"/>
   </svg>`,
 
-  'recycle': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-    <!-- Bin body -->
-    <path d="M10,16 L12,36 L28,36 L30,16 Z" fill="#c8d4e8" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Bin lid -->
-    <rect x="7" y="12" width="26" height="4" rx="1" fill="#a8b8d8" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Handle -->
-    <rect x="16" y="9" width="8" height="4" rx="2" fill="#a8b8d8" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Lines on bin -->
-    <line x1="15" y1="20" x2="14" y2="33" stroke="#7f9db9" stroke-width="1"/>
-    <line x1="20" y1="20" x2="20" y2="33" stroke="#7f9db9" stroke-width="1"/>
-    <line x1="25" y1="20" x2="26" y2="33" stroke="#7f9db9" stroke-width="1"/>
-    <!-- Recycle arrow hint -->
-    <text x="20" y="30" text-anchor="middle" font-size="9" fill="#3b6bc9">♻</text>
-  </svg>`,
+  'recycle': `<img src="public/assets/icons/recyle_bin.ico" width="40" height="40" style="image-rendering:pixelated;" />`,
 
   'stats': `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
     <!-- Chart background -->

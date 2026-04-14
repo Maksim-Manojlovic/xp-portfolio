@@ -96,6 +96,14 @@
   line-height: 1;
 }
 
+.start-item-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  display: block;
+}
+
 .start-item-text { line-height: 1.35; }
 
 .start-item-title {
