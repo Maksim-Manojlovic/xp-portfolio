@@ -38,6 +38,7 @@ function makePaintState(id) {
     selectionMode: 'opaque',
     textX_x: 0, textX_y: 0,
     textStyle: { font:'Arial', size:16, bold:false, italic:false, under:false },
+    textObjects: [],
     modified: false,
     canvas: null,
     ctx: null,
@@ -157,7 +158,9 @@ function paintKeyDown(e) {
       P.isPolygonDrawing = false; P.polygonPoints = [];
       P.octx.clearRect(0,0,P.overlay.width,P.overlay.height);
     }
-    rasterizeTextInput(P);
+    // Escape discards the active textarea without committing it
+    const ta = document.getElementById('paint-text-input');
+    if (ta) ta.remove();
   }
 }
 

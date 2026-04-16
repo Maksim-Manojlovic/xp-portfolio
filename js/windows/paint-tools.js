@@ -1,6 +1,5 @@
 // ===== PAINT TOOLS — all drawing logic =====
-import { BRUSH_SHAPES } from './paint-ui.js';
-import { rasterizeTextInput } from './paint-ui.js';
+import { BRUSH_SHAPES, saveActiveTextToObjects, renderTextOverlay, syncTextToolbar } from './paint-ui.js';
 
 // ── Coordinate helper ──────────────────────────────────────────────────────
 export function getPos(e, canvas, zoom) {
@@ -265,24 +264,67 @@ export function onMouseDown(e, P) {
       break;
 
     // ── Text ─────────────────────────────────────────────────
-    case 'text':
-      rasterizeTextInput(P);
-      {
-        const ta = document.createElement('textarea');
-        ta.id = 'paint-text-input';
-        ta.rows = 3;
-        ta.style.font = `${P.textStyle.italic?'italic ':''} ${P.textStyle.bold?'bold ':''} ${P.textStyle.size}px "${P.textStyle.font}"`;
-        ta.style.color = P.fg;
-        ta.style.textDecoration = P.textStyle.under ? 'underline' : 'none';
-        ta.style.left = (x * P.zoomLevel) + 'px';
-        ta.style.top  = (y * P.zoomLevel) + 'px';
-        P.textX_x = x; P.textX_y = y;
-        P.canvas.parentElement.appendChild(ta);
-        ta.focus();
-        ta.addEventListener('blur', () => { rasterizeTextInput(P); });
-        ta.addEventListener('keydown', ev => { if (ev.key === 'Escape') { ta.remove(); } });
+    case 'text': {
+      // Save any open textarea to textObjects (without committing to canvas)
+      saveActiveTextToObjects(P);
+
+      // Hit-test existing text objects — clicking on one re-opens it for editing
+      const hitIdx = P.textObjects.findIndex(obj => {
+        const pad = 6;
+        return x >= obj.x - pad && x <= obj.x + obj.w + pad &&
+               y >= obj.y - pad && y <= obj.y + obj.h + pad;
+      });
+
+      let initText = '';
+      let initX = x, initY = y;
+
+      if (hitIdx >= 0) {
+        const obj = P.textObjects.splice(hitIdx, 1)[0];
+        initText = obj.text;
+        initX = obj.x;
+        initY = obj.y;
+        P.textStyle = { ...obj.style };
+        P.fg = obj.color;
+        syncTextToolbar(P);
+        // Update FG swatch
+        const fgEl = document.getElementById(`paint-fg-${P.winId}`);
+        if (fgEl) fgEl.style.background = P.fg;
       }
+
+      P.textX_x = initX;
+      P.textX_y = initY;
+
+      // Re-render overlay (shows remaining text objects, minus the one now being edited)
+      renderTextOverlay(P);
+
+      // Create textarea at the target position
+      const ta = document.createElement('textarea');
+      ta.id = 'paint-text-input';
+      ta.value = initText;
+      ta.rows = 3;
+      ta.style.font = `${P.textStyle.italic?'italic ':''} ${P.textStyle.bold?'bold ':''} ${P.textStyle.size}px "${P.textStyle.font}"`;
+      ta.style.color = P.fg;
+      ta.style.textDecoration = P.textStyle.under ? 'underline' : 'none';
+      ta.style.left = (initX * P.zoomLevel) + 'px';
+      ta.style.top  = (initY * P.zoomLevel) + 'px';
+      P.canvas.parentElement.appendChild(ta);
+      ta.focus();
+      if (initText) ta.setSelectionRange(initText.length, initText.length);
+
+      // Stop clicks on textarea from bubbling to canvas
+      ta.addEventListener('mousedown', ev => ev.stopPropagation());
+      // Enter = place text as object, Shift+Enter = newline, Escape = discard
+      ta.addEventListener('keydown', ev => {
+        if (ev.key === 'Enter' && !ev.shiftKey) {
+          ev.preventDefault();
+          saveActiveTextToObjects(P);
+          renderTextOverlay(P);
+        } else if (ev.key === 'Escape') {
+          ta.remove();
+        }
+      });
       break;
+    }
 
     // ── Line ────────────────────────────────────────────────
     case 'line':

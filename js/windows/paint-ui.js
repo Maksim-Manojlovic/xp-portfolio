@@ -239,7 +239,11 @@ export function paintSetFG(id, color) {
   const el = document.getElementById(`paint-fg-${id}`);
   if (el) el.style.background = color;
   const P = window._paint;
-  if (P && P.winId === id) P.fg = color;
+  if (P && P.winId === id) {
+    P.fg = color;
+    const ta = document.getElementById('paint-text-input');
+    if (ta) ta.style.color = color;
+  }
 }
 
 export function paintSetBG(id, color) {
@@ -338,29 +342,93 @@ function updateTextInput(P) {
   el.style.textDecoration = P.textStyle.under ? 'underline' : 'none';
 }
 
-export function rasterizeTextInput(P) {
+// Saves the active textarea into P.textObjects without drawing to canvas.
+export function saveActiveTextToObjects(P) {
   const el = document.getElementById('paint-text-input');
   if (!el || !P) return;
   const text = el.value || '';
-  if (text.trim()) {
-    P.ctx.save();
-    P.ctx.font = `${P.textStyle.italic?'italic ':''} ${P.textStyle.bold?'bold ':''} ${P.textStyle.size}px "${P.textStyle.font}"`;
-    P.ctx.fillStyle = P.fg;
-    P.ctx.textBaseline = 'top';
-    if (P.textStyle.under) {
-      text.split('\n').forEach((line, i) => {
-        const y = P.textX_y + i * (P.textStyle.size + 2);
-        const w = P.ctx.measureText(line).width;
-        P.ctx.fillRect(P.textX_x, y + P.textStyle.size + 1, w, 1);
+  el.remove();
+  if (!text.trim()) return;
+  const fontStr = `${P.textStyle.italic?'italic ':''} ${P.textStyle.bold?'bold ':''} ${P.textStyle.size}px "${P.textStyle.font}"`;
+  const tmp = document.createElement('canvas').getContext('2d');
+  tmp.font = fontStr;
+  const lines = text.split('\n');
+  const lineH = P.textStyle.size + 2;
+  const w = Math.max(...lines.map(l => tmp.measureText(l).width), 10);
+  const h = lines.length * lineH;
+  P.textObjects.push({ x: P.textX_x, y: P.textX_y, text, style: { ...P.textStyle }, color: P.fg, w, h });
+}
+
+// Renders all placed-but-not-committed text objects on the overlay canvas.
+export function renderTextOverlay(P) {
+  if (!P || !P.octx) return;
+  P.octx.clearRect(0, 0, P.overlay.width, P.overlay.height);
+  P.textObjects.forEach(obj => {
+    const fontStr = `${obj.style.italic?'italic ':''} ${obj.style.bold?'bold ':''} ${obj.style.size}px "${obj.style.font}"`;
+    P.octx.save();
+    P.octx.font = fontStr;
+    P.octx.fillStyle = obj.color;
+    P.octx.textBaseline = 'top';
+    const lineH = obj.style.size + 2;
+    if (obj.style.under) {
+      obj.text.split('\n').forEach((line, i) => {
+        const lw = P.octx.measureText(line).width;
+        P.octx.fillRect(obj.x, obj.y + i * lineH + obj.style.size + 1, lw, 1);
       });
     }
-    text.split('\n').forEach((line, i) => {
-      P.ctx.fillText(line, P.textX_x, P.textX_y + i * (P.textStyle.size + 2));
+    obj.text.split('\n').forEach((line, i) => {
+      P.octx.fillText(line, obj.x, obj.y + i * lineH);
     });
-    P.ctx.restore();
-    pushUndo(P);
-  }
-  el.remove();
+    const pad = 3;
+    P.octx.setLineDash([4, 4]);
+    P.octx.strokeStyle = '#555';
+    P.octx.lineWidth = 1;
+    P.octx.strokeRect(obj.x - pad, obj.y - pad, obj.w + pad * 2, obj.h + pad * 2);
+    P.octx.setLineDash([]);
+    P.octx.restore();
+  });
+}
+
+// Updates the text toolbar UI to reflect P.textStyle (used when re-opening a text object).
+export function syncTextToolbar(P) {
+  const id = P.winId;
+  const fEl = document.getElementById(`paint-font-${id}`);
+  const sEl = document.getElementById(`paint-fontsize-${id}`);
+  if (fEl) fEl.value = P.textStyle.font;
+  if (sEl) sEl.value = P.textStyle.size;
+  ['bold', 'italic', 'under'].forEach(s => {
+    const btn = document.getElementById(`ptb-${s}-${id}`);
+    if (btn) btn.classList.toggle('active', !!P.textStyle[s]);
+  });
+}
+
+// Commits all text objects (overlay) + active textarea to the main canvas.
+// Called when switching tools or any other "finalize" action.
+export function rasterizeTextInput(P) {
+  if (!P) return;
+  saveActiveTextToObjects(P);
+  if (!P.textObjects || !P.textObjects.length) return;
+  P.ctx.save();
+  P.textObjects.forEach(obj => {
+    const fontStr = `${obj.style.italic?'italic ':''} ${obj.style.bold?'bold ':''} ${obj.style.size}px "${obj.style.font}"`;
+    P.ctx.font = fontStr;
+    P.ctx.fillStyle = obj.color;
+    P.ctx.textBaseline = 'top';
+    const lineH = obj.style.size + 2;
+    if (obj.style.under) {
+      obj.text.split('\n').forEach((line, i) => {
+        const lw = P.ctx.measureText(line).width;
+        P.ctx.fillRect(obj.x, obj.y + i * lineH + obj.style.size + 1, lw, 1);
+      });
+    }
+    obj.text.split('\n').forEach((line, i) => {
+      P.ctx.fillText(line, obj.x, obj.y + i * lineH);
+    });
+  });
+  P.ctx.restore();
+  P.textObjects = [];
+  if (P.octx) P.octx.clearRect(0, 0, P.overlay.width, P.overlay.height);
+  pushUndo(P);
 }
 
 function applyShapeStyle(P) {
