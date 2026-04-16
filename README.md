@@ -9,12 +9,12 @@ A fully interactive portfolio built to look and feel like **Windows XP** — com
 ## Features
 
 ### OS Experience
-- **Boot sequence** → Welcome screen → Desktop (full animated flow)
+- **Boot sequence** → Welcome screen → Desktop (full animated flow with XP startup sound)
 - **Draggable, resizable windows** with minimize, maximize, close, and taskbar integration
-- **Start menu** with pinned apps and quick links
+- **Start menu** — authentic XP layout with `.ico` icons, pinned apps, and quick links
 - **Right-click context menu** on the desktop (arrange icons, change wallpaper, open apps)
 - **System tray** with live clock and tooltip
-- **Wallpaper picker** with multiple options
+- **Wallpaper picker** with multiple options + set-as-wallpaper from Paint
 - **XP-style notifications** (pop-up toasts from the tray)
 - **Mobile splash screen** — graceful fallback for small screens
 
@@ -28,7 +28,42 @@ A fully interactive portfolio built to look and feel like **Windows XP** — com
 | Notes | Notepad | Personal notes / dev log |
 | CV Download | File Download Dialog | Resume download |
 | My Stats | Performance Monitor | Animated counters + tech bar chart |
+| Paint | Microsoft Paint | Full XP Paint clone (see below) |
 | Recycle Bin | Recycle Bin | Easter egg — contains a playable game |
+
+### Paint — Full XP Clone
+A pixel-accurate recreation of Windows XP Paint with all 16 original tools:
+
+| Tool | Description |
+|---|---|
+| Pencil | 1-px freehand drawing |
+| Brush | 12 brush shapes (round, square, diagonal, horizontal, vertical) |
+| Airbrush | 3 spray sizes with random particle scatter |
+| Eraser | 4 eraser sizes |
+| Fill | BFS flood fill with configurable color tolerance |
+| Pick Color | Sample any canvas pixel into the active color |
+| Magnifier | 1×, 2×, 6×, 8× zoom |
+| Text | Non-destructive floating text layer (editable until tool switch) |
+| Line | Straight lines with 5 width options |
+| Curve | 2-click quadratic Bézier curves |
+| Rectangle | Outline / filled / filled-no-border modes |
+| Rounded Rectangle | Same fill modes as rectangle |
+| Ellipse | Same fill modes as rectangle |
+| Polygon | Click-to-add vertices, double-click to close |
+| Select | Rectangular marquee selection with marching ants |
+| Free-Form Select | Freehand selection outline |
+
+**Additional Paint features:**
+- 28-color XP palette with custom color picker (both foreground & background)
+- Tool options panel (brush shape picker, line widths, fill modes, eraser sizes)
+- Text toolbar (font, size, bold, italic, underline) — stays synced when re-editing text
+- **Non-destructive text editing** — text objects live on the overlay and remain clickable/editable until you switch tools; Enter places a text object, clicking it re-opens it, switching tools commits everything to the canvas
+- Undo / Redo — 20-step history
+- Canvas resize handles (drag east, south, or corner)
+- Image operations: Flip Horizontal / Vertical, Rotate 90° / 180° / 270°, Invert Colors, Clear Image, Image Attributes (custom width × height)
+- File operations: New, Open (any image format), Save as PNG
+- Set current canvas as desktop wallpaper
+- Status bar — live cursor coordinates and canvas dimensions
 
 ### Games & Easter Eggs
 - **Destruction Mode** — cursor weapon game, destroy the desktop (chainsaw, dynamite, and more)
@@ -48,7 +83,7 @@ A fully interactive portfolio built to look and feel like **Windows XP** — com
 | Layer | What's used |
 |---|---|
 | Structure | HTML5 (single `index.html`) |
-| Styles | Vanilla CSS (14 files, component-split) |
+| Styles | Vanilla CSS (15 files, component-split) |
 | Logic | Vanilla JavaScript — ES Modules |
 | Contact | Formspree (AJAX / fetch) |
 | Bundler | None |
@@ -72,6 +107,7 @@ A fully interactive portfolio built to look and feel like **Windows XP** — com
 │   ├── start-menu.css       # Start menu
 │   ├── context-menu.css     # Right-click menu
 │   ├── content.css          # All window content styles
+│   ├── paint.css            # Paint application styles
 │   ├── game.css             # Destruction game HUD/overlay
 │   ├── notification.css     # Toast notifications
 │   ├── scrollbars.css       # XP-style custom scrollbars
@@ -92,7 +128,7 @@ A fully interactive portfolio built to look and feel like **Windows XP** — com
 │   │   ├── toolbar.js       # Explorer-style toolbar (back, up, address bar)
 │   │   ├── menu.js          # Window menu bar (File, Edit, View…)
 │   │   ├── clock.js         # Live system clock
-│   │   ├── audio.js         # Sound effects
+│   │   ├── audio.js         # Sound effects (XP startup sound)
 │   │   ├── wallpaper.js     # Wallpaper picker + apply
 │   │   ├── notification.js  # Toast notification system
 │   │   └── dialogs.js       # Turn Off, About, Help, Cheats dialogs
@@ -105,7 +141,10 @@ A fully interactive portfolio built to look and feel like **Windows XP** — com
 │   │   ├── notes.js
 │   │   ├── cvDownload.js
 │   │   ├── stats.js         # Animated counters + bar chart
-│   │   └── recycle.js       # Easter egg gateway
+│   │   ├── recycle.js       # Easter egg gateway
+│   │   ├── paint.js         # Paint window registration + canvas init, undo/redo, file ops
+│   │   ├── paint-ui.js      # Tool definitions, HTML builders, color panel, text layer logic
+│   │   └── paint-tools.js   # All drawing tool implementations (mouse handlers)
 │   │
 │   ├── games/
 │   │   ├── destructionGame.js
@@ -122,7 +161,7 @@ A fully interactive portfolio built to look and feel like **Windows XP** — com
 └── public/
     └── assets/
         ├── images/
-        └── icons/
+        └── icons/           # Authentic .ico files for all desktop/Start menu icons
 ```
 
 ---
