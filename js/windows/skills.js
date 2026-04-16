@@ -165,7 +165,7 @@ export function buildSkills(body) {
 
 export function registerSkills() {
   state.windowDefs.skills = {
-    title: "Device Manager — Skills & Tools", icon: "⚙️", w: 540, h: 460,
+    title: "Device Manager — Skills & Tools", icon: `<img src="public/assets/icons/Skills.ico" width="16" height="16" style="image-rendering:pixelated;">`, w: 540, h: 460,
     menuBar: ["Action", "View", "Tools", "Help"],
     toolbar: false, statusBar: false,
     content: buildSkills

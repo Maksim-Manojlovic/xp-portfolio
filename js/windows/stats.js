@@ -128,7 +128,7 @@ export function adjustColor(hex) {
 
 export function registerStats() {
   state.windowDefs.stats = {
-    title: "System Properties — Developer Stats", icon: "📊", w: 520, h: 400,
+    title: "System Properties — Developer Stats", icon: `<img src="public/assets/icons/Stats.ico" width="16" height="16" style="image-rendering:pixelated;">`, w: 520, h: 400,
     menuBar: ["File","View","Tools","Help"], toolbar: false, statusBar: false,
     content: buildStats
   };
