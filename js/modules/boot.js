@@ -24,7 +24,7 @@ export function startBootSequence(onDesktopReady) {
     // Swap body content to "logging in" state
     welcomeBody.innerHTML = `
       <div class="welcome-logging-in">
-        <div class="welcome-avatar" style="margin-bottom:12px;">👨‍💻</div>
+        <div class="welcome-avatar" style="margin-bottom:12px;"><img src="public/assets/icons/startup icon.webp" style="width:64px;height:64px;image-rendering:pixelated;border-radius:8px;"></div>
         <div class="welcome-username">Maksim Manojlovic</div>
         <div class="welcome-loading-label">Loading your personal settings...</div>
         <div class="welcome-loading-bar">
