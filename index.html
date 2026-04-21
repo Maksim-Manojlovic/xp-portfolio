@@ -293,7 +293,7 @@
   <div class="ctx-item" onclick="openWallpaperPicker()">Change Wallpaper 🖼️</div>
   <div class="ctx-item disabled">Display Properties</div>
   <div class="ctx-sep"></div>
-  <div class="ctx-item" onclick="location.reload(); hideContextMenu()">Refresh</div>
+  <div class="ctx-item" onclick="hideContextMenu(); (function(){ var icons=document.querySelectorAll('.desktop-icon'); icons.forEach(function(i){i.style.opacity='0';}); setTimeout(function(){ icons.forEach(function(i){i.style.opacity='1';}); },200); })()">Refresh</div>
 </div>
 
 <!-- GAME OVERLAY -->
